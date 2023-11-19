@@ -1,7 +1,7 @@
 #A simple stacked reroute node for making Streets/Highways/Pipes. Whatever you want to call them.
-#A Model input is required. No other node has to be filled.
+#All nodes are optional.
 #Uploaded on 10/18/2023
-#Currently WIP
+#Node is final until I can find a way to add js styling.
 
 class Aria_SimpleReroute:
     def __init__(self):
@@ -18,15 +18,16 @@ class Aria_SimpleReroute:
             "negative_opt": ("CONDITIONING",),
             "latent_opt": ("LATENT",),
             "image_opt": ("IMAGE",),
-            "int_opt": ("INT", {}),
+            "mask_opt": ("MASK",), 
+            "int_opt": ("INT",{}),
         }}
-    RETURN_TYPES = ("MODEL", "CLIP", "VAE", "CONDITIONING", "CONDITIONING", "LATENT", "IMAGE", "INT") 
-    RETURN_NAMES = ("model_opt", "clip_opt", "vae_opt", "positive_opt", "negative_opt", "latent_opt", "image_opt", "int_opt")
+    RETURN_TYPES = ("MODEL", "CLIP", "VAE", "CONDITIONING", "CONDITIONING", "LATENT", "IMAGE", "MASK", "INT") 
+    RETURN_NAMES = ("model_opt", "clip_opt", "vae_opt", "positive_opt", "negative_opt", "latent_opt", "image_opt", "mask_opt", "int_opt")
     FUNCTION = "A_Run"
     CATEGORY = "Aria"
 
     def A_Run(self, **kwargs):
-        return kwargs.get('model_opt', None), kwargs.get('clip_opt', None), kwargs.get('vae_opt', None), kwargs.get('positive_opt', None), kwargs.get('negative_opt', None), kwargs.get('latent_opt', None), kwargs.get('image_opt', None), kwargs.get('int_opt', None)
+        return kwargs.get('model_opt', None), kwargs.get('clip_opt', None), kwargs.get('vae_opt', None), kwargs.get('positive_opt', None), kwargs.get('negative_opt', None), kwargs.get('latent_opt', None), kwargs.get('image_opt', None), kwargs.get('mask_opt', None), kwargs.get('int_opt', None)
     
 NODE_CLASS_MAPPINGS = {
     "Aria_SimpleReroute": Aria_SimpleReroute
