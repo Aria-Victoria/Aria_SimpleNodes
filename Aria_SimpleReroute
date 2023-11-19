@@ -9,19 +9,24 @@ class Aria_SimpleReroute:
     @classmethod
     def INPUT_TYPES(s):
         return {"required": {
-            "model": ("MODEL",),
         },
         "optional": {
+            "model_opt": ("MODEL",),
             "clip_opt": ("CLIP",),
             "vae_opt": ("VAE",),
+            "positive_opt": ("CONDITIONING",),
+            "negative_opt": ("CONDITIONING",),
+            "latent_opt": ("LATENT",),
+            "image_opt": ("IMAGE",),
+            "int_opt": ("INT", {}),
         }}
-    RETURN_TYPES = ("MODEL", "CLIP", "VAE") 
-    RETURN_NAMES = ("model", "clip_opt", "vae_opt")
+    RETURN_TYPES = ("MODEL", "CLIP", "VAE", "CONDITIONING", "CONDITIONING", "LATENT", "IMAGE", "INT") 
+    RETURN_NAMES = ("model_opt", "clip_opt", "vae_opt", "positive_opt", "negative_opt", "latent_opt", "image_opt", "int_opt")
     FUNCTION = "A_Run"
-    CATAGORY = "Aria/Reroute"
+    CATEGORY = "Aria"
 
-    def A_Run(self, model, **kwargs):
-        return model, kwargs.get('clip_opt', None), kwargs.get('vae_opt', None)      
+    def A_Run(self, **kwargs):
+        return kwargs.get('model_opt', None), kwargs.get('clip_opt', None), kwargs.get('vae_opt', None), kwargs.get('positive_opt', None), kwargs.get('negative_opt', None), kwargs.get('latent_opt', None), kwargs.get('image_opt', None), kwargs.get('int_opt', None)
     
 NODE_CLASS_MAPPINGS = {
     "Aria_SimpleReroute": Aria_SimpleReroute
