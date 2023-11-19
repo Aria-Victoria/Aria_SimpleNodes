@@ -1,0 +1,31 @@
+#A simple stacked reroute node for making Streets/Highways/Pipes. Whatever you want to call them.
+#A Model input is required. No other node has to be filled.
+#Uploaded on 10/18/2023
+#Currently WIP
+
+class Aria_SimpleReroute:
+    def __init__(self):
+        pass
+    @classmethod
+    def INPUT_TYPES(s):
+        return {"required": {
+            "model": ("MODEL",),
+        },
+        "optional": {
+            "clip_opt": ("CLIP",),
+            "vae_opt": ("VAE",),
+        }}
+    RETURN_TYPES = ("MODEL", "CLIP", "VAE") 
+    RETURN_NAMES = ("model", "clip_opt", "vae_opt")
+    FUNCTION = "A_Run"
+    CATAGORY = "Aria/Reroute"
+
+    def A_Run(self, model, **kwargs):
+        return model, kwargs.get('clip_opt', None), kwargs.get('vae_opt', None)      
+    
+NODE_CLASS_MAPPINGS = {
+    "Aria_SimpleReroute": Aria_SimpleReroute
+}
+NODE_DISPLAY_NAME_MAPPINGS = {
+    "Aria_SimpleReroute": "Simple Reroute"
+}
